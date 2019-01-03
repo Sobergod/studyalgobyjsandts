@@ -1,5 +1,5 @@
 // 节点
-class Node {
+class Node_js {
   constructor(element) {
     this.element = element;
     this.next = null;
@@ -8,7 +8,7 @@ class Node {
 // 链表
 class LinkList {
   constructor() {
-    this.head = new Node("head");
+    this.head = new Node_js("head");
   }
   // 获取链表长度
   getLinkListLength() {
