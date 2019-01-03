@@ -41,12 +41,44 @@ class LinkList_ts {
     currentNode.next = newNode;
   }
   // 查找前一个节点
+  findPrev(item: string) {
+    let currentNode = this.head;
+    while (currentNode.next !== null && currentNode.next.element !== item) {
+      currentNode = currentNode.next;
+    }
+    if (currentNode.next === null) {
+      return -1;
+    }
+    return currentNode;
+  }
   // 删除节点
+  remove(element: string) {
+    const currentNode = this.findByValue(element);
+    if (currentNode === -1) {
+      console.log("没有这个节点");
+      return;
+    }
+    let prevNode = this.findPrev(element);
+    prevNode.next = currentNode.next;
+  }
   // 遍历显示所有节点
+  findAllNodes() {
+    let currnetNode = this.head;
+    while (currnetNode.next !== null) {
+      console.log(currnetNode);
+      currnetNode = currnetNode.next;
+    }
+  }
 }
 
 let headNode = { element: "head", next: null };
 const linkList = new LinkList_ts(headNode);
 linkList.insertAfter("a1", "head");
 linkList.insertAfter("a2", "head");
+console.log(linkList);
+// 游标没法删除
+linkList.remove("head");
+// 删除节点
+linkList.remove("a1");
+
 console.log(linkList);
