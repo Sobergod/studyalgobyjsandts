@@ -103,10 +103,27 @@ class LinkList {
     // 替换原链表
     this.head = newLink;
   }
+  // 检测链表是否有环
+  // 追击问题,两指针一起跑快的追上慢的就是有环
+  checkHasCircle() {
+    let fastTemp = this.head.next;
+    let slowTemp = this.head;
+    while (fastTemp !== null && fastTemp.next !== null) {
+      fastTemp = fastTemp.next.next;
+      slowTemp = slowTemp.next;
+      if (slowTemp === fastTemp) {
+        console.log("has circle");
+        return true;
+      }
+    }
+    return false;
+  }
 }
 let LList = new LinkList();
 LList.insertAfter("haha0", "head");
 LList.insertAfter("haha1", "haha0");
 LList.insertAfter("haha2", "haha1");
-LList.reverseList();
+LList.insertAfter("head", "haha2");
+// LList.reverseList();
+LList.checkHasCircle();
 LList.getAllNodes();
